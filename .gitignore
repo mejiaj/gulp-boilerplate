@@ -1,0 +1,9 @@
+
+# Ignore dist directory
+dist
+
+# Node.js Modules
+node_modules
+
+# SASS Cache
+.sass-cache

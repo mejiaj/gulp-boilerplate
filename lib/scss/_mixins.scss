@@ -1,0 +1,66 @@
+//
+// Mixins and functions.
+//
+
+// For use with the Gulp SVG Sprite plugin
+// -----------------------------------------------------------------------------
+// Gets an attribute from the sass map
+@function sprite-attr($icon, $attr) {
+  $icon: map-get($icons, $icon);
+  @return map-get($icon, $attr);
+}
+
+// Returns specific attributes for each icon
+@function icon-attr($icon) {
+  $attr: (
+    width: sprite-attr($icon, width),
+    height: sprite-attr($icon, height),
+    x: sprite-attr($icon, backgroundX),
+    y: sprite-attr($icon, backgroundY)
+  );
+  @return $attr;
+}
+
+// Sets SVG background image with IE PNG fallback
+%sprite {
+  background-image: url(map-get($sprite, svgPath));
+}
+%ie-sprite {
+   background-image: url(map-get($sprite, pngPath));
+}
+
+// IE Sprite Mixin to add scope class to selectors for IE cases
+@mixin ie-sprite($icon) {
+  $iconMap: icon-attr($icon);
+
+  @if $ieSprite {
+    #{$ieSprite} & {
+      // Displays the PNG fallback
+      @extend %ie-sprite;
+    }
+  }
+}
+
+// Main mixin to add sprites
+@mixin sprite($icon, $type: all) {
+  @if $type == all {
+    // Includes the main SVG sprite image
+    @extend %sprite;
+  }
+
+  $iconMap: icon-attr($icon);
+
+  // Outputs dimensions
+  @if $type == all or $type == size {
+    width: map-get($iconMap, width);
+    height: map-get($iconMap, height);
+  }
+
+  // Outputs background position minus the padding
+  @if $type == all or $type == bg {
+    background-position: (map-get($iconMap, x) - map-get($sprite, padding)) (map-get($iconMap, y) - map-get($sprite, padding));
+  }
+
+  // Add IE fallback
+  @include ie-sprite($icon);
+}

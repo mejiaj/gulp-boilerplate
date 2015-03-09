@@ -1,0 +1,16 @@
+// Main stylesheet
+
+@import 'sprite';
+@import 'variables';
+@import 'mixins';
+@import 'base';
+@import 'typography';
+
+
+.pacman {
+  display: block;
+  float: left;
+  margin-right: 0.5em;
+  @include sprite(pacman);
+}
+
