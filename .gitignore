@@ -1,6 +1,7 @@
 
-# Ignore dist directory
+# Ignore dist directory and generated sprite sheet.
 dist
+_sprite.scss
 
 # Node.js Modules
 node_modules
