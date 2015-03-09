@@ -7,8 +7,9 @@ An opinionated Gulp boilerplate build for writing SCSS, JS, SVG Sprites.
   1. Download [NVM](https://github.com/creationix/nvm)
   2. Install Node v0.10.35 `nvm install 0.10.35`
   3. Select v0.10.35 as the default `nvm alias default 0.10.35`
-2. Install Gulp and all dependencies `npm install`
-3. Profit
+2. Install Gulp `npm install gulp -g`
+3. Install dependencies locally `npm install`
+4. Profit
 
 ## Current list of tasks
 
@@ -28,10 +29,12 @@ An opinionated Gulp boilerplate build for writing SCSS, JS, SVG Sprites.
 
 ## Opinionated SCSS styles
 
-  - base.scss
+  - `_base.scss`
     - Uses Paul Irish's box-sizing reset
-  - typography.scss
+  - `_typography.scss`
     - Creates basic heading, line-height, and margin styles
+  - `_variables.scss`
+    - Basic variables for typography, colors, z-indexes, and the sprite sheets.
 
 ## Credits
 - Mark Goodyeah (@markgoodyear) for creating a starters guide to Gulp with instructions. [Check out Mark's post](http://markgoodyear.com/2014/01/getting-started-with-gulp/).
