@@ -19,7 +19,10 @@ var dirs = pkg['gbp-configs'].directories;
 
 gulp.task('styles', function() {
   return gulp.src(dirs.lib + '/scss/**/*.scss')
-    .pipe(sass({ style: 'expanded' }))
+    .pipe(sass({
+      outputStyle: 'expanded',
+      sourceComments: 'normal'
+    }))
     .on('error', notify.onError({
       message: 'Error: <%= error.message %>'
     }))
