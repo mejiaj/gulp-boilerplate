@@ -9,7 +9,7 @@ var gulp = require('gulp'),
   notify = require('gulp-notify'),
   cache = require('gulp-cache'),
   del = require('del'),
-  svgo = require('gulp-svgo'),
+  imagemin = require('gulp-imagemin'),
   svgSprites = require('gulp-svg-sprites'),
   svg2png = require('gulp-svg2png'),
   runSequence = require('run-sequence');
@@ -41,7 +41,7 @@ gulp.task('scripts', function() {
 
 gulp.task('svgSprite', function () {
   return gulp.src(dirs.lib + '/sprite/*')
-    .pipe(svgo())
+    .pipe(imagemin())
     .pipe(svgSprites({
       cssFile: '../' + dirs.lib + '/scss/_sprite.scss',
       preview: false,
