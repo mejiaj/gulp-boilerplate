@@ -1,18 +1,18 @@
 var gulp = require('gulp'),
-  sass = require('gulp-sass'),
   autoprefixer = require('gulp-autoprefixer'),
-  cssnano = require('gulp-cssnano'),
-  jshint = require('gulp-jshint'),
-  uglify = require('gulp-uglify'),
-  rename = require('gulp-rename'),
-  concat = require('gulp-concat'),
-  notify = require('gulp-notify'),
   cache = require('gulp-cache'),
+  concat = require('gulp-concat'),
+  cssnano = require('gulp-cssnano'),
   del = require('del'),
   imagemin = require('gulp-imagemin'),
-  svgSprites = require('gulp-svg-sprites'),
+  jshint = require('gulp-jshint'),
+  notify = require('gulp-notify'),
+  rename = require('gulp-rename'),
+  runSequence = require('run-sequence'),
+  sass = require('gulp-sass'),
   svg2png = require('gulp-svg2png'),
-  runSequence = require('run-sequence');
+  svgSprites = require('gulp-svg-sprites'),
+  uglify = require('gulp-uglify');
 
 var pkg = require('./package.json');
 var dirs = pkg['gbp-configs'].directories;
@@ -20,6 +20,9 @@ var dirs = pkg['gbp-configs'].directories;
 gulp.task('styles', function() {
   return gulp.src(dirs.lib + '/scss/**/*.scss')
     .pipe(sass({ style: 'expanded' }))
+    .on('error', notify.onError({
+      message: 'Error: <%= error.message %>'
+    }))
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
     .pipe(gulp.dest(dirs.dist + '/css'))
     .pipe(rename({suffix: '.min'}))
